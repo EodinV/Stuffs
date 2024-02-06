@@ -1,8 +1,7 @@
 # Stuffs
 Shared Stuffs:
 <ul>
-      <li>Thing 1</li>
-      <li>Thing 2</li>
-      <li>Thing 3</li>
+      <li>.gxw are GXWorks2 files, they read as binary in anything else, needs to be opened in GXWorks</li>
+      <li>Wind Thing is an idea involving a raspberry pi pico and Eight NTC80 thermal resistors (Wind Direction Sensor)</li>
+      <li>HTML is just me practicing basic HTML and Javascript stuffs</li>
     </ul>
-.gxw are GXWorks2 files, they read as binary in anything else, needs to be opened in GXWorks
