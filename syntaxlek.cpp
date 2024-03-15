@@ -6,16 +6,26 @@ using namespace std;
 
 string filename;
 string txt = ".txt";
-char hello[];
+string hello;
 float a = 0;
 float b = 0;
 float sum;
+
+float angle(float x, float y)
+{
+    float ans;
+    float cal1 = (x / y);
+    float rad = atan(cal1);
+    ans = rad * 180 / 3.1415;
+    return ans;
+}
+
 
 int main()
 {
     float a = 0;
     float b = 0;
-    float sum, mult, subt, subt2, div, div2, high, low, sqrt;    
+    float sum, mult, subt, subt2, div, div2, high, low, sqrt, ang;    
     cout << "Hello! What is your name?" << endl;
     cin >> hello;
     cout << "Type a number" << endl;
@@ -31,6 +41,7 @@ int main()
     high = fmax(a, b);
     low = fmin(a, b);
     sqrt = hypot(a, b);
+    ang = angle(a, b);
     
     filename = hello + txt;
     ofstream File(filename);
@@ -74,6 +85,9 @@ int main()
     File << div2 << endl;
     File << "Hypothenuse is:                ";
     File << sqrt << endl;
+    File << "With the angle:                ";
+    File << ang << endl;
+    
 
 
 
