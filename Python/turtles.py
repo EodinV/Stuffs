@@ -1,48 +1,57 @@
 import turtle
 
+win = turtle.Screen()
+win.setup(0.5, 0.5)
+win.bgcolor(0.2, 0.2, 0.2)
+win.title("Drawing thing")
+
+
+#                       !!!!USE SETHEADING!!!!
 #   0   = Right
 #   90  = Up
 #   180 = Left
 #   270 = Down
 # memang can be used to alter direction... memang 90 gives 0 = Up
 #pen down, point to angle and draw distance
-def draw(angle, distance, memang):
-    anglee = memang
-    if anglee > angle:
-        diff = anglee - angle
-        if diff > 180:
-            diff = diff - 180
-            turtle.left(diff)
-        else:
-            turtle.right(diff)
-    elif angle > anglee:
-        diff = angle - anglee
-        if diff > 180:
-            diff = diff - 180
-            turtle.right(diff)
-        else:
-            turtle.left(diff)
-
+def draw(angle, distance, shift):
+    #anglee = memang
+    #if anglee > angle:
+    #    diff = anglee - angle
+    #    if diff > 180:
+    #        diff = diff - 180
+    #        turtle.left(diff)
+    #    else:
+    #        turtle.right(diff)
+    #elif angle > anglee:
+    #    diff = angle - anglee
+    #    if diff > 180:
+    #        diff = diff - 180
+    #        turtle.right(diff)
+    #    else:
+    #        turtle.left(diff)
+    #SETHEADING does all of the above.
+    turtle.setheading(angle + shift)
     turtle.pendown()
     turtle.forward(distance)      
 #pen up, point to angle and move distance
-def move(angle, distance, memang):
-    anglee = memang
-    if anglee > angle:
-        diff = anglee - angle
-        if diff > 180:
-            diff = diff - 180
-            turtle.right(diff)
-        else:
-            turtle.left(diff)
-    elif angle > anglee:
-        diff = angle - anglee
-        if diff > 180:
-            diff = diff - 180
-            turtle.left(diff)
-        else:
-            turtle.right(diff)
-
+def move(angle, distance):
+    #anglee = memang
+    #if anglee > angle:
+    #    diff = anglee - angle
+    #    if diff > 180:
+    #        diff = diff - 180
+    #        turtle.right(diff)
+    #    else:
+    #        turtle.left(diff)
+    #elif angle > anglee:
+    #    diff = angle - anglee
+    #    if diff > 180:
+    #        diff = diff - 180
+    #        turtle.left(diff)
+    #    else:
+    #        turtle.right(diff)
+    #SETHEADING does all of the above.
+    turtle.setheading(angle)
     turtle.penup()
     turtle.forward(distance)
 #choose style of pen
@@ -52,7 +61,7 @@ def style(color, size, speed):
     turtle.pensize(size)
 
 #draw a circle: verts = amount of vertices, dia = Diameter
-def draw_circle(verts, dia):
+def draw_shape(verts, dia):
     mem = 90
     dang = 0
     circ = dia * 3.1415
@@ -60,33 +69,20 @@ def draw_circle(verts, dia):
     for i in range(verts):
         dang = mem + (360 / verts)
 
-        draw(dang, versize, mem)
+        draw(dang, versize)
         mem = dang
         #move(0, 0)   
         i + 1 
 
+def draw_flower(petals, size):
+    st = 0
+    pang = 360 / petals
+    for i in range(petals):
+        ping = st * pang
+        draw_shape(300, size)
+        
+style('yellow', 1, 150)
 
-move(90, 250, 0)
-move(270, 0, 0)
-draw_circle(64, 2400)
-draw_circle(64, 2200)
-draw_circle(64, 2000)
-draw_circle(64, 1800)
-draw_circle(64, 1600)
-draw_circle(64, 1400)
-draw_circle(64, 1200)
-draw_circle(64, 1000)
-draw_circle(64, 800)
-draw_circle(64, 600)
-draw_circle(64, 400)
-draw_circle(64, 200)
-draw_circle(64, 100)
-draw_circle(64, 50)
-draw_circle(64, 25)
-draw_circle(64, 12.5)
+draw_flower(8, 200)
 
-
-
-
-
-turtle.mainloop()
+turtle.done()
