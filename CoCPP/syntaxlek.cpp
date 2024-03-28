@@ -10,46 +10,6 @@ float a = 0;
 float b = 0;
 float sum;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-class User
-{
-private:
-    string Name;
-    float FirstNumber;
-    float SecondNumber;
-public:
-    void setName(string name)
-    {
-        Name = name;
-    }
-    string getName()
-    {
-        return Name;
-    }
-    void setFirst(float a)
-    {
-        FirstNumber = a;
-    }
-    float getFirst()
-    {
-        return FirstNumber;
-    }
-    void setSecond(float b)
-    {
-        SecondNumber = b;
-    }
-    float getSecond()
-    {
-        return SecondNumber;
-    }
-};
-
-
->>>>>>> 2be87641143d8205f7ff665a16900dabeb57f26f
-=======
->>>>>>> 96ae1d5acb33e2510e88768603d3588a7d7e99b0
 
 
 float angle(float x, float y)
@@ -79,7 +39,16 @@ void fileMake(int type, string hello, float first, float second, float sum, floa
         txt = ".txt";
     }
     
-    
+    /*  bool found = false;
+        while( std::getline( stream1, line ) && !found)
+            {
+                if(line.find("2015-1113") != string::npos)
+                { // WILL SEARCH 2015-1113 in file
+                cout << line << endl;
+                found = true;
+                // If you really want to use "break;" Here will be a nice place to put it. Though it is not really necessary
+                }
+            }*/
     
 
     filename = hello + txt;
@@ -87,74 +56,6 @@ void fileMake(int type, string hello, float first, float second, float sum, floa
 
     if (txt == ".html")
     {       
-        File << "<!DOCTYPE html>" << endl;
-        File << "<html lang=\"en\" dir=\"ltr\">" << endl;
-        File << "   <head>" << endl;
-        File << "       <meta charset=\"utf-8\">" << endl;
-        File << "       <title>" << hello << "</title>" << endl;
-        File << "       <link rel=\"icon\" href=\"https://media.istockphoto.com/id/1196385489/vector/red-rooster-cock-icon-logo-graphic.jpg?s=612x612&w=0&k=20&c=mUqHzg5U1Vk4Pn6xTx9A7Do2FQWBtgtuZBGTiGQ_jDw=\">" << endl;
-        File << "   </head>" << endl;
-        File << endl;
-        File << "<dl class=\"\"" << endl;
-        File << "   <dt>Subject Name:</dt>" << endl;
-        File << "   <dd>" << hello << "</dd>" << endl;
-        File << "   <dt>Subjects 1st number:</dt>" << endl;
-        File << "   <dd>" << first << "</dd>" << endl;
-        File << "   <dt>Subjects 2nd number:</dt>" << endl; 
-        File << "   <dd>" << second << "</dd" << endl;
-        File << "   <dt>Subjects highest number:</dt>" << endl;
-        File << "   <dd>" << high << "</dd>" << endl;
-        File << "   <dt>Subjects lowest number:</dt>" << endl;
-        File << "   <dd>" << low << "</dd>" << endl;
-        File << "   <dt>Sum of the two:</dt>" << endl;
-        File << "   <dd>" << sum << "</dd>" << endl;
-        File << "   <dt>Multiplied:</dt>" << endl;
-        File << "   <dd>" << mult << "</dd>" << endl;
-        File << "   <dt>First minus Second:</dt>" << endl;
-        File << "   <dd>" << subt << "</dd>" << endl;
-        File << "   <dt>Second minus First:</dt>" << endl;
-        File << "   <dd>" << subt2 << "</dd>" << endl;
-        File << "   <dt>First divided by Second:</dt>" << endl;
-        File << "   <dd>" << div << "</dd>" << endl;
-        File << "   <dt>Second divided by First:</dt>" << endl;
-        File << "   <dd>" << div2 << "</dd>" << endl;
-        File << "   <dt>Hypothenuse is:</dd>" << endl;
-        File << "   <dd>" << sqrt << "</dd>" << endl;
-        File << "   <dt>With the angle:</dt>" << endl;
-        File << "   <dd>" << ang << "</dd>" << endl;
-        File << "</html>" << endl;
-    }
-
-    if (txt == ".json")
-    {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 96ae1d5acb33e2510e88768603d3588a7d7e99b0
-        File << "{" << endl;
-        File << "   \"File\": {" << endl;
-        File << "       \"title\":\"example file\"," << endl;
-        File << "       \"FileDiv\": {" << endl;
-        File << "           \"Entries\":{" << endl;
-        File << "               \"Subject\":" << "\"" << hello << "\"," << endl;
-        File << "               \"First Num\":" << "\"" << first << "\"," << endl; 
-        File << "               \"Second Num\":" << "\"" << second << "\"," << endl;
-        File << "               \"Higher Num\":" << "\"" << high << "\"," << endl;
-        File << "               \"Lower Num\":" << "\"" << low << "\"," << endl;
-        File << "               \"Sum\":" << "\"" << sum << "\"," << endl;
-        File << "               \"Multiplied\":" << "\"" << mult << "\"," << endl;
-        File << "               \"1st minus 2nd\":" << "\"" << subt << "\"," << endl;
-        File << "               \"2nd minus 1st\":" << "\"" << subt2 << "\"," << endl;
-        File << "               \"Div 1st/2nd\":" << "\"" << div << "\"," << endl;
-        File << "               \"Div 2nd/1st\":" << "\"" << div2 << "\"," << endl;
-        File << "               \"Hypothenuse\":" << "\"" << sqrt << "\"," << endl;
-        File << "               \"Angle\":" << "\"" << ang << "\"" << endl;
-        File << "           }" << endl;
-        File << "       }" << endl;
-        File << "   }" << endl;
-        File << "}" << endl;
-<<<<<<< HEAD
-=======
         File << "<!DOCTYPE html>" << endl;
         File << "<html lang=\"en\" dir=\"ltr\">" << endl;
         File << "   <head>" << endl;
@@ -190,11 +91,33 @@ void fileMake(int type, string hello, float first, float second, float sum, floa
         File << "   <dd>" << sqrt << "</dd>" << endl;
         File << "   <dt>With the angle:</dt>" << endl;
         File << "   <dd>" << ang << "</dd>" << endl;
-        File << "</dl>" << endl;
         File << "</html>" << endl;
->>>>>>> 2be87641143d8205f7ff665a16900dabeb57f26f
-=======
->>>>>>> 96ae1d5acb33e2510e88768603d3588a7d7e99b0
+    }
+
+    if (txt == ".json")
+    {
+        File << "{" << endl;
+        File << "   \"File\": {" << endl;
+        File << "       \"title\":\"example file\"," << endl;
+        File << "       \"FileDiv\": {" << endl;
+        File << "           \"Entries\":{" << endl;
+        File << "               \"Subject\":" << "\"" << hello << "\"," << endl;
+        File << "               \"First Num\":" << "\"" << first << "\"," << endl; 
+        File << "               \"Second Num\":" << "\"" << second << "\"," << endl;
+        File << "               \"Higher Num\":" << "\"" << high << "\"," << endl;
+        File << "               \"Lower Num\":" << "\"" << low << "\"," << endl;
+        File << "               \"Sum\":" << "\"" << sum << "\"," << endl;
+        File << "               \"Multiplied\":" << "\"" << mult << "\"," << endl;
+        File << "               \"1st minus 2nd\":" << "\"" << subt << "\"," << endl;
+        File << "               \"2nd minus 1st\":" << "\"" << subt2 << "\"," << endl;
+        File << "               \"Div 1st/2nd\":" << "\"" << div << "\"," << endl;
+        File << "               \"Div 2nd/1st\":" << "\"" << div2 << "\"," << endl;
+        File << "               \"Hypothenuse\":" << "\"" << sqrt << "\"," << endl;
+        File << "               \"Angle\":" << "\"" << ang << "\"" << endl;
+        File << "           }" << endl;
+        File << "       }" << endl;
+        File << "   }" << endl;
+        File << "}" << endl;
     }
     
     if (txt == ".txt")
