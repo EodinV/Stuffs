@@ -1,8 +1,8 @@
 import turtle
 
 win = turtle.Screen()
-win.setup(0.5, 0.5)
-win.bgcolor(0.2, 0.2, 0.2)
+win.setup(0.75, 0.75)
+win.bgcolor(0.6, 0.6, 0.6)
 win.title("Drawing thing")
 
 
@@ -61,7 +61,7 @@ def style(color, size, speed):
     turtle.pensize(size)
 
 #draw a circle: verts = amount of vertices, dia = Diameter
-def draw_shape(verts, dia):
+def draw_shape(verts, dia, shift):
     mem = 90
     dang = 0
     circ = dia * 3.1415
@@ -69,20 +69,55 @@ def draw_shape(verts, dia):
     for i in range(verts):
         dang = mem + (360 / verts)
 
-        draw(dang, versize)
+        draw(dang, versize, shift)
         mem = dang
         #move(0, 0)   
         i + 1 
 
-def draw_flower(petals, size):
-    st = 0
-    pang = 360 / petals
-    for i in range(petals):
-        ping = st * pang
-        draw_shape(300, size)
-        
-style('yellow', 1, 150)
 
-draw_flower(8, 200)
+
+#Stoverride is to lock style to whatever is set outside function.
+def draw_flower(petals, size, stoverride):
+    pang = 360 / petals
+    ping = 0
+    vert = petals * 2
+    ding = size / (petals/2)
+    color = 0
+    for i in range(petals):
+        draw_shape(vert, size, ping)
+        ping = ping + pang
+        move(ping, ding)
+        color += 1
+        if stoverride == 0:
+            if color == 0:
+                style('black', 1, 10)
+            elif color == 1:
+                style('gray', 1, 10)
+            elif color == 2:
+                style('red', 1, 10)
+            elif color == 3:
+                style('orange', 1, 10)  
+            elif color == 4:
+                style('yellow', 1, 10)
+            elif color == 5:
+                style('green', 1, 10)
+            elif color == 6:
+                style('blue', 1, 10)
+            elif color == 7:
+                style('purple', 1, 10)
+            elif color == 8:
+                style('red', 1, 10)
+            elif color == 9:
+                style('white', 1, 10)
+
+            if color > 9:
+                color = 0
+
+        
+        
+
+
+
+draw_flower(64, 200, 0)
 
 turtle.done()
