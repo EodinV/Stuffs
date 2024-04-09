@@ -11,6 +11,7 @@ Shared Stuffs:
             <li>ciphplay.py: playing around with a rolling cipher</li>
             <li>turtlevader.py: space invaders made with turtle. Playing around with turtle to learn how it works.</li>
             <li>turtles.py: trying to learn how to draw using code. Having fun.</li>
+            <li>OpenCV, Learning Computer Vision</li>
       </ul>
       <li>CoCPP Folder: Contains some "this might work"-projects. </li>
       <ul>
