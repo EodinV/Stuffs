@@ -8,15 +8,16 @@ Shared Stuffs:
       <ul>
             <li>Chuck.py: Playing with an API that spits out random Chuck Norris jokes, Printing them to console</li>
             <li>PykeyPress.py: Printing pressed directionkey (Up/Down/Left/Right) to console</li>
-            <li>ciphplay.py: playing around with a rolling cipher</li>
             <li>turtlevader.py: space invaders made with turtle. Playing around with turtle to learn how it works.</li>
             <li>turtles.py: trying to learn how to draw using code. Having fun.</li>
-            <li>OpenCV, Learning Computer Vision</li>
+            <li>OpenCV: Learning Computer Vision</li>
       </ul>
       <li>CoCPP Folder: Contains some "this might work"-projects. </li>
       <ul>
             <li>syntaxlek.cpp: cpp program to spit out info into html, json or txt format... playing around to learn.</li>
             <li>credit.c: checking if credit card nr is viable.</li>
+            <li>Chiffer: ASCII Rolling Cipher</li>
+            <li>OpenCV: Learning to use Computer Vision in C++</li>
       </ul>
 </ul>
 
