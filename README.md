@@ -12,6 +12,7 @@ Shared Stuffs:
             <li>turtles.py: trying to learn how to draw using code. Having fun.</li>
             <li>OpenCV: Learning Computer Vision</li>
 	    <li>Euler: My attempts at Project Euler problems.</li>
+	    <li>pent: pentesting tools, very basic made for tryhackme rooms.</li>
       </ul>
       <li>CoCPP Folder: Contains some "this might work"-projects. </li>
       <ul>
