@@ -124,29 +124,41 @@ def RL(r, c):
     return tot
 
 def punkt(i, j):
+    pumax = 0
     if i < 3:
         if j < 3:
             punktarr = [LR(i, j), diaLD(i, j), UD(i, j)]
+            pumax = max(punktarr)
         elif j > 15:
             punktarr = [RL(i, j), diaRD(i, j), UD(i, j)]
+            pumax = max(punktarr)
         else:
-            punktarr = [RL(i, j), diaRD(i, j), UD(i, j), diaLD(i, j), LR(i, j)]       
-    elif i > 2 & i < 16:
-        if j < 3:
-            punktarr = [DU(i, j), diaLU(i, j), LR(1, j), diaLD(i, j), UD(i, j)]   
-        elif j > 15:
-            punktarr = [DU(i, j), diaRU(i, j), RL(i, j), diaRD(i, j), UD(i, j)] 
+            punktarr = [RL(i, j), diaRD(i, j), UD(i, j), diaLD(i, j), LR(i, j)]
+            pumax = max(punktarr)       
+    elif i > 2:
+        if i < 16:
+            if j < 3:
+                punktarr = [DU(i, j), diaLU(i, j), LR(1, j), diaLD(i, j), UD(i, j)]
+                pumax = max(punktarr)   
+            elif j > 15:
+                punktarr = [DU(i, j), diaRU(i, j), RL(i, j), diaRD(i, j), UD(i, j)]
+                pumax = max(punktarr) 
     elif i > 15:
         if j < 3:
             punktarr = [DU(i, j), diaLU(i, j), LR(i, j)]
+            pumax = max(punktarr)
         elif j > 15:
             punktarr = [DU(i, j), diaRD(i, j), RL(i, j)]
+            pumax = max(punktarr)
         else:
             punktarr = [RL(i, j), diaRU(i, j), DU(i, j), diaLU(i, j), LR(i, j)]
+            pumax = max(punktarr)
     else:
         punktarr = [DU(i, j), diaLU(i, j), LR(i, j), diaLD(i, j), UD(i, j), diaRD(i, j), RL(i, j), diaRU(i, j)]
+        pumax = max(punktarr)
     
-    return max(punktarr, default = 0)
+
+    return pumax
 
 def parma():
     for i in range(len(matrix)):
@@ -156,7 +168,7 @@ def parma():
 
 def toterminal():
     
-    radmax = []
+    radmax = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
     for i in range(len(punktmax)):
         radmax[i] = max(punktmax[i], default = 0)    
