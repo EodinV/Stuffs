@@ -1,9 +1,32 @@
 import math
+import numpy
 
 # diagon ally runs from left to right
 
 i = 0
 j = 0
+punktarr = []
+punktmax = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], 
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]]
+totmax = 0
 matrix = [[ 8,  2, 22, 97, 38, 15, 00, 40, 00, 75,  4,  5,  7, 78, 52, 12, 50, 77, 91,  8], 
           [49, 49, 99, 40, 17, 81, 18, 57, 60, 87, 17, 40, 98, 43, 69, 48,  4, 56, 62, 00], 
           [81, 49, 31, 73, 55, 79, 14, 29, 93, 71, 40, 67, 53, 88, 30,  3, 49, 13, 36, 65], 
@@ -25,19 +48,120 @@ matrix = [[ 8,  2, 22, 97, 38, 15, 00, 40, 00, 75,  4,  5,  7, 78, 52, 12, 50, 7
           [20, 73, 35, 29, 78, 31, 90,  1, 74, 31, 49, 71, 48, 86, 81, 16, 23, 57,  5, 54],
           [ 1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52,  1, 89, 19, 67, 48]]
 
-for i in range(len(matrix)):
+#for i in range(len(matrix)):
     #for j in range(len(matrix[i])):
-    print(max(matrix[i]))
+        #print(max(matrix[i]))
 
-def diaDU():
-    return
+#LFrom Left Going Down
+def diaLD(r, c):
+    n1 = matrix[r][c]
+    n2 = matrix[r+1][c+1]
+    n3 = matrix[r+2][c+2]
+    n4 = matrix[r+3][r+3]
+    tot = n1 * n2 * n3 * n4
+    return tot
 
-def diaUD():
-    return
+#From Left Going Up
+def diaLU(r, c):
+    n1 = matrix[r][c]
+    n2 = matrix[r-1][c+1]
+    n3 = matrix[r-2][c+2]
+    n4 = matrix[r-3][c+3]
+    tot = n1 * n2 * n3 * n4
+    return tot
 
-def UD():
-    return
+#From Right Going Down
+def diaRD(r, c):
+    n1 = matrix[r][c]
+    n2 = matrix[r+1][c-1]
+    n3 = matrix[r+2][c-2]
+    n4 = matrix[r+3][c-3]
+    tot = n1 * n2 * n3 * n4
+    return tot
 
-def LR():
-    return
+#From Right Going Up
+def diaRU(r, c):
+    n1 = matrix[r][c]
+    n2 = matrix[r-1][c-1]
+    n3 = matrix[r-2][c-2]
+    n4 = matrix[r-3][c-3]
+    tot = n1 * n2 * n3 * n4
+    return tot
 
+#From Up to Down
+def UD(r, c):
+    n1 = matrix[r][c]
+    n2 = matrix[r+1][c]
+    n3 = matrix[r+2][c]
+    n4 = matrix[r+3][c]
+    tot = n1 * n2 * n3 * n4
+    return tot
+
+#From Down to Up
+def DU(r, c):
+    n1 = matrix[r][c]
+    n2 = matrix[r-1][c]
+    n3 = matrix[r-2][c]
+    n4 = matrix[r-3][c]
+    tot = n1 * n2 * n3 * n4
+    return tot
+
+#From Left to Right
+def LR(r, c):
+    n1 = matrix[r][c]
+    n2 = matrix[r][c+1]
+    n3 = matrix[r][c+2]
+    n4 = matrix[r][c+3]
+    tot = n1 * n2 * n3 * n4
+    return tot
+
+#from Right to Left
+def RL(r, c):
+    n1 = matrix[r][c]
+    n2 = matrix[r][c-1]
+    n3 = matrix[r][c-2]
+    n4 = matrix[r][c-3]
+    tot = n1 * n2 * n3 * n4
+    return tot
+
+def punkt(i, j):
+    if i < 3 & j < 3:
+        punktarr = [LR(i, j), diaLD(i, j), UD(i, j)]
+    elif i < 3 & j > 15:
+        punktarr = [RL(i, j), diaRD(i, j), UD(i, j)]
+    elif i < 3:
+        punktarr = [RL(i, j), diaRD(i, j), UD(i, j), diaLD(i, j), LR(i, j)]
+    elif j < 3:
+        punktarr = [DU(i, j), diaLU(i, j), LR(1, j), diaLD(i, j), UD(i, j)]   
+    elif j > 15:
+        punktarr = [DU(i, j), diaRU(i, j), RL(i, j), diaRD(i, j), UD(i, j)] 
+    elif i > 15 & j < 3:
+        punktarr = [DU(i, j), diaLU(i, j), LR(i, j)]
+    elif i > 15 & j > 15:
+        punktarr = [DU(i, j), diaRD(i, j), RL(i, j)]
+    elif i > 15:
+        punktarr = [RL(i, j), diaRU(i, j), DU(i, j), diaLU(i, j), LR(i, j)]
+    else:
+        punktarr = [DU(i, j), diaLU(i, j), LR(i, j), diaLD(i, j), UD(i, j), diaRD(i, j), RL(i, j), diaRU(i, j)]
+    
+    return max(punktarr)
+
+def parma():
+    for i in range(len(matrix)):
+        for j in range(len(matrix[i])):
+            punktmax[i][j] = punkt(i, j)
+            print(i, j)
+
+def toterminal():
+    
+    radmax = []
+
+    for i in range(len(punktmax)):
+        radmax[i] = max(punktmax[i], default = 0)    
+
+
+
+    print(max(radmax))
+
+parma()
+toterminal()
