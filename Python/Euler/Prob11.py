@@ -5,7 +5,6 @@ import numpy
 
 i = 0
 j = 0
-punktarr = []
 punktmax = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0], 
             [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -125,26 +124,29 @@ def RL(r, c):
     return tot
 
 def punkt(i, j):
-    if i < 3 & j < 3:
-        punktarr = [LR(i, j), diaLD(i, j), UD(i, j)]
-    elif i < 3 & j > 15:
-        punktarr = [RL(i, j), diaRD(i, j), UD(i, j)]
-    elif i < 3:
-        punktarr = [RL(i, j), diaRD(i, j), UD(i, j), diaLD(i, j), LR(i, j)]
-    elif j < 3:
-        punktarr = [DU(i, j), diaLU(i, j), LR(1, j), diaLD(i, j), UD(i, j)]   
-    elif j > 15:
-        punktarr = [DU(i, j), diaRU(i, j), RL(i, j), diaRD(i, j), UD(i, j)] 
-    elif i > 15 & j < 3:
-        punktarr = [DU(i, j), diaLU(i, j), LR(i, j)]
-    elif i > 15 & j > 15:
-        punktarr = [DU(i, j), diaRD(i, j), RL(i, j)]
+    if i < 3:
+        if j < 3:
+            punktarr = [LR(i, j), diaLD(i, j), UD(i, j)]
+        elif j > 15:
+            punktarr = [RL(i, j), diaRD(i, j), UD(i, j)]
+        else:
+            punktarr = [RL(i, j), diaRD(i, j), UD(i, j), diaLD(i, j), LR(i, j)]       
+    elif i > 2 & i < 16:
+        if j < 3:
+            punktarr = [DU(i, j), diaLU(i, j), LR(1, j), diaLD(i, j), UD(i, j)]   
+        elif j > 15:
+            punktarr = [DU(i, j), diaRU(i, j), RL(i, j), diaRD(i, j), UD(i, j)] 
     elif i > 15:
-        punktarr = [RL(i, j), diaRU(i, j), DU(i, j), diaLU(i, j), LR(i, j)]
+        if j < 3:
+            punktarr = [DU(i, j), diaLU(i, j), LR(i, j)]
+        elif j > 15:
+            punktarr = [DU(i, j), diaRD(i, j), RL(i, j)]
+        else:
+            punktarr = [RL(i, j), diaRU(i, j), DU(i, j), diaLU(i, j), LR(i, j)]
     else:
         punktarr = [DU(i, j), diaLU(i, j), LR(i, j), diaLD(i, j), UD(i, j), diaRD(i, j), RL(i, j), diaRU(i, j)]
     
-    return max(punktarr)
+    return max(punktarr, default = 0)
 
 def parma():
     for i in range(len(matrix)):
