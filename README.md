@@ -13,6 +13,7 @@ Shared Stuffs:
             <li>OpenCV: Learning Computer Vision</li>
 	    <li>Euler: My attempts at Project Euler problems (most are probably wrong, because I don't know the math behind it..</li>
 	    <li>pent: pentesting tools, very basic made for tryhackme rooms.</li>
+	    <li>Rosetta: My take on some rosetta code problems.</li>
       </ul>
       <li>CoCPP Folder: Contains some "this might work"-projects. </li>
       <ul>
