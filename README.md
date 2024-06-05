@@ -22,6 +22,7 @@ Shared Stuffs:
             <li>Chiffer: ASCII Rolling Cipher</li>
             <li>OpenCV: Learning to use Computer Vision in C++</li>
       </ul>
+      <li>COBOL: Learning COBOL as best as I can</li>
 </ul>
 
 <a href="mailto:mattiasvholmgren@gmail.com?subject=Stuffs"><strong>My Email</strong></a>
