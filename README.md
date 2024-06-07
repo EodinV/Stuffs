@@ -11,9 +11,10 @@ Shared Stuffs:
             <li>turtlevader.py: space invaders made with turtle. Playing around with turtle to learn how it works.</li>
             <li>turtles.py: trying to learn how to draw using code. Having fun.</li>
             <li>OpenCV: Learning Computer Vision</li>
-	    <li>Euler: My attempts at Project Euler problems (most are probably wrong, because I don't know the math behind it..</li>
-	    <li>pent: pentesting tools, very basic made for tryhackme rooms.</li>
-	    <li>Rosetta: My take on some rosetta code problems.</li>
+	      <li>Euler: My attempts at Project Euler problems (most are probably wrong, because I don't know the math behind it..</li>
+	      <li>pent: pentesting tools, very basic made for tryhackme rooms.</li>
+	      <li>Rosetta: My take on some rosetta code problems.</li>
+            <li>Panda3d: playing around with panda3d</li>
       </ul>
       <li>CoCPP Folder: Contains some "this might work"-projects. </li>
       <ul>
