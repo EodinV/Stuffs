@@ -25,6 +25,7 @@ Shared Stuffs:
             <li>OpenCV: Learning to use Computer Vision in C++</li>
       </ul>
       <li>COBOL: Learning COBOL as best as I can</li>
+      <li>School: Project(s) I have helped on.</li>
 </ul>
 
 <a href="mailto:mattiasvholmgren@gmail.com?subject=Stuffs"><strong>My Email</strong></a>
