@@ -25,7 +25,7 @@ Shared Stuffs:
             <li>OpenCV: Learning to use Computer Vision in C++</li>
       </ul>
       <li>COBOL: Learning COBOL as best as I can</li>
-      <li>School: Project(s) I have helped on.</li>
+      <li>School: Project(s) I have helped on. canbus code generation using python, for use on a greenhouse project.</li>
 </ul>
 
 <a href="mailto:mattiasvholmgren@gmail.com?subject=Stuffs"><strong>My Email</strong></a>
