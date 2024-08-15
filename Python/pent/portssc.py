@@ -5,7 +5,7 @@ import pyfiglet as pf
 ascii_banner = pf.figlet_format("TryHackMe \n Python 4 Pents \n ScannyBoi")
 print(ascii_banner)
 
-ip = '10.10.30.160'
+ip = 'ANY-IP'
 open_ports = []
 
 ports = range(1, 65535)

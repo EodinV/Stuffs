@@ -26,8 +26,8 @@ with open(passwd_file, 'r') as file:
                 print('password found: ' + password)
                 exit(0)
             elif response == 1:
-                print('ah ah ah ah, you didnt say the magic word')
+                print("YOU DIDN'T SAY THE MAGIC WORD!")
         except Exception as e:
             print(e)
         pass
-input_file.close()
+passwd_file.close()

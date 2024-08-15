@@ -1,7 +1,7 @@
 import requests as re 
 import sys
 
-sub_list = open("/home/eodin/THM/files/penpy/wordlist2-1626415171030.txt").read()
+sub_list = open("GENERIC WORDFILE").read()
 directories = sub_list.splitlines()
 
 for dir in directories:
