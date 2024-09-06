@@ -1,0 +1,10 @@
+{
+    "name": "Bottled Traction",
+    "description": "A mod to access and print individual wheel speeds.",
+    "version": "0.1",
+    "author": "Your Name",
+    "type": "vehicle",
+    "lua": [
+        "BottledTraction.lua"  // Path to your Lua script
+    ]
+}

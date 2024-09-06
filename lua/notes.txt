@@ -1,0 +1,44 @@
+vehicleData.M.update innehåller wheelspeed osv:
+local function update(dt)
+  local wheelAccess = M.wheelAccess
+  local virtualSensors = CMU.virtualSensors
+  local sensorHub = CMU.sensorHub
+
+  local frontLeftWheel = wheelAccess.frontLeft
+  local frontRightWheel = wheelAccess.frontRight
+  local rearLeftWheel = wheelAccess.rearLeft
+  local rearRightWheel = wheelAccess.rearRight
+
+  local steeringInput = sensorHub.steeringInput
+  local steeringSign = sign(steeringInput)
+
+  M.frontLeftWheelAngle = acos(obj:nodeVecPlanarCosRightForward(frontLeftWheel.node2, frontLeftWheel.node1)) * steeringSign
+  M.frontRightWheelAngle = acos(obj:nodeVecPlanarCosRightForward(frontRightWheel.node1, frontRightWheel.node2)) * steeringSign
+  M.rearLeftWheelAngle = acos(obj:nodeVecPlanarCosRightForward(rearLeftWheel.node2, rearLeftWheel.node1))
+  M.rearRightWheelAngle = acos(obj:nodeVecPlanarCosRightForward(rearRightWheel.node1, rearRightWheel.node2))
+
+  M.frontWheelAngle = (M.frontLeftWheelAngle + M.frontRightWheelAngle) * 0.5
+  M.rearWheelAngle = (M.rearLeftWheelAngle + M.rearRightWheelAngle) * 0.5
+
+  local virtualSpeed = virtualSensors.virtual.speed
+  local wheelSpeed = virtualSensors.virtual.wheelSpeed
+  local speed = virtualSensors.trustWorthiness.virtualSpeed >= 0.5 and virtualSpeed or wheelSpeed
+
+  turningCircle.centerAcc = getTurningCircleAcc(speed, dt)
+  turningCircle.centerSTM = min(getTurningCircleSTM(), 1e10)
+
+  turningCircle.centerFinal = linearScale(speed, 3, 5, turningCircle.centerSTM, turningCircle.centerAcc)
+
+  local offsetInner = steeringInput < 0 and M.vehicleStats.trackWidthRefRight or M.vehicleStats.trackWidthRefLeft
+  local offsetOuter = steeringInput < 0 and M.vehicleStats.trackWidthRefLeft or M.vehicleStats.trackWidthRefRight
+  turningCircle.innerFinal = turningCircle.centerFinal - offsetInner
+  turningCircle.outerFinal = turningCircle.centerFinal + offsetOuter
+  local turningCircleRatioOuter = guardInfNaN(turningCircle.outerFinal / turningCircle.innerFinal)
+
+  local leftRatio = M.frontWheelAngle > 0 and 1 or turningCircleRatioOuter
+  local rightRatio = M.frontWheelAngle < 0 and 1 or turningCircleRatioOuter
+  for i = 0, wheelCount - 1 do
+    local wheelName = wheels.wheels[i].name
+    M.turningCircleSpeedRatios[wheelName] = leftWheels[wheelName] and leftRatio or rightRatio
+  end
+end

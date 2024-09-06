@@ -1,0 +1,13 @@
+"BottledTraction": {             //Internal name of the component
+    "information":{
+        "authors":"Gunknard",             //Name in the part selectior
+        "name":"Bottled Traction",
+        "value":400,
+    },
+    "slotType":"BottledTraction",//Slot Type
+    "slots":[                           //Slots
+        ["type", "default", "description"],
+        ,
+    ],
+},
+

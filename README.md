@@ -26,6 +26,7 @@ Shared Stuffs:
       </ul>
       <li>COBOL: Learning COBOL as best as I can</li>
       <li>School: Project(s) I have helped on. canbus code generation using python, for use on a greenhouse project.</li>
+      <li>Lua: playing around with beamng modding</li> 
 </ul>
 
 <a href="mailto:mattiasvholmgren@gmail.com?subject=Stuffs"><strong>My Email</strong></a>
