@@ -45,7 +45,7 @@ act = input("Download or purge? d/p:  ")
 if act == "d" or act == "D":
     downl()
 elif act == "p" or act == "p":
-    sure = input("Are you sure) y/n:  ")
+    sure = input("Are you sure? y/n:  ")
     if sure == "y" or sure == "Y":
         purge()
     else: 
