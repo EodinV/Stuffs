@@ -47,24 +47,25 @@ def number_of_hits(query):
     number_of_hits = json_response['total']['value']
     print(f"\nNumber of hits = {number_of_hits} \n")
     print(f"\n\n{remember}")
-    
-def PDFreader(CuVi, adds):
+
+#additional textfiles not tested so not technically implemented, id testing remember to add "adds" to def and "text2" to return   
+def PDFreader(CuVi):
     curr = PDFQuery(f'CV/{CuVi}.pdf')
     curr.load()
 
-    adndm = PDFQuery(f'add/{adds}.pdf')
-    adndm.load()
+ #   adndm = PDFQuery(f'add/{adds}.pdf')
+ #   adndm.load()
 
     # Use CSS-like selectors to locate the elements
     text_els1 = curr.pq('LTTextLineHorizontal')
-    text_els2 = adndm.pq('LTTextLineHorizontal')
+ #   text_els2 = adndm.pq('LTTextLineHorizontal')
 
     # Extract the text from the elements
     text = [t.text for t in text_els1]
-    text2 = [t.text2 for t in text_els2]
+ #   text2 = [t.text2 for t in text_els2]
 
     #print(text)
-    return(text, text2)
+    return(text)
 
 def Adreader(ad):
     with open(f"textfiler/{ad}", "r") as ad:
