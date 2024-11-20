@@ -17,6 +17,7 @@ Shared Stuffs:
 	      <li>Rosetta: My take on some rosetta code problems.</li>
             <li>Panda3d: Playing around with panda3d</li>
             <li>YtPy.py: Discord bot that uses DuckDuckGo APIs to respond with Imagelinks, Videolinks, Newslinks, and Searchlinks, aswell as some LLM query responses.</li>
+            <li>Jobbsök: Automated Jobsearch utilizing OpenAI and swedish Arbetsförmedlingen API to structure coverletters and make specified CVs for the ad.. text only</li>
       </ul>
       <li>CoCPP Folder: Contains some "this might work"-projects. </li>
       <ul>
