@@ -47,22 +47,16 @@ def number_of_hits(query):
     number_of_hits = json_response['total']['value']
     print(f"\nNumber of hits = {number_of_hits} \n")
     print(f"\n\n{remember}")
-
-#additional textfiles not tested so not technically implemented, id testing remember to add "adds" to def and "text2" to return   
+    
 def PDFreader(CuVi):
-    curr = PDFQuery(f'CV/{CuVi}.pdf')
-    curr.load()
-
- #   adndm = PDFQuery(f'add/{adds}.pdf')
- #   adndm.load()
+    pdf = PDFQuery(f'CV/{CuVi}.pdf')
+    pdf.load()
 
     # Use CSS-like selectors to locate the elements
-    text_els1 = curr.pq('LTTextLineHorizontal')
- #   text_els2 = adndm.pq('LTTextLineHorizontal')
+    text_elements = pdf.pq('LTTextLineHorizontal')
 
     # Extract the text from the elements
-    text = [t.text for t in text_els1]
- #   text2 = [t.text2 for t in text_els2]
+    text = [t.text for t in text_elements]
 
     #print(text)
     return(text)
@@ -106,6 +100,7 @@ def LLMhelper2():
     )
     return(completion.choices[0].message.content)
   
+# needs adding: string_without_slashes = original_string.replace('/', '').replace('\\', '')
 
 def loop_through_hits(query, amount):
     # limit = 100 is the max number of hits that can be returned.
@@ -115,17 +110,20 @@ def loop_through_hits(query, amount):
     search_params = {'q': query, 'limit': amount}
     json_response = _get_ads(search_params)
     hits = json_response['hits']
+    found = []
     with open("Sok.json", "w") as file:
         file.write(json.dumps(json_response))
     for hit in hits:
         jobb = hit['headline']
-        jobb_clean = f"{jobb.translate(str.maketrans('','', string.punctuation))}"
+        jobb_clean = jobb.translate(str.maketrans('','', string.punctuation))
         print(f"{hit['headline']}, {hit['employer']['name']}")
+        found.append(f"{count}: {hit['headline']}, {hit['employer']['name']}")
         count += 1
         
         emp = hit['employer']
         if isinstance(emp, dict) and 'workplace' in emp:
             filename_helper = emp['workplace']
+            filename_helper = filename_helper.strip()
         
         emurl = hit['application_details']
         if isinstance(emurl, dict) and 'url' in emurl:
@@ -136,9 +134,10 @@ def loop_through_hits(query, amount):
         
         filename = f"{jobb_clean} - Ad - {count}.txt"
         filePath = directory / filename
+        print(f"FilePath: {filePath}")
         filename2 = f"{jobb_clean} - Application - {count}.txt"
         filePath2 = directory / filename2
-        
+        print(f"FilePath2: {filePath2}")
         
         description = hit['description']
         
@@ -156,11 +155,11 @@ def loop_through_hits(query, amount):
            
 
 if __name__ == "__main__":
-    print("Se till att filer som ska läsas ligger i \"textfiler\"")
+    print("Se till att filer som ska läsas ligger i \"CV\"")
     name = input("Vad heter du?: ")
     curriculum = input("Vad heter din CV-fil? var noga och skriv inte in \".pdf\"\n")
     antal = input("Max antal förslag: ")
-    funk = input("Vilken funktion vill du använda?(skriv nummer) \n1. Cover Letter utifrån CV och hämtade annonser.\n2. Osäker på vad du ska söka efter?\n3. Presentationstext byggd på information i CV.\n4. Teckenbegränsad Presentation.\n5. Internship email.\n6. Annons från fil.\n7. Skrapad Om-Oss till e-mail\n8. Passar jag för företaget?\n")
+    funk = input("Vilken funktion vill du använda?(skriv nummer) \n1. Cover Letter utifrån CV och hämtade annonser.\n2. Osäker på vad du ska söka efter?\n3. Presentationstext byggd på information i CV.\n4. Teckenbegränsad Presentation.\n5. Internship email.\n6. Annons från fil.\n7. Skrapad Om-Oss till e-mail\n8. Passar jag för företaget?\n9. Testa Funktioner: \n")
     if funk == "1":
         query1 = input("Skriv en sökterm (Företag, Jobb etc.): ")
         query2 = input("Var vill du jobba? (lämna tomt om N/A): ")
@@ -170,7 +169,7 @@ if __name__ == "__main__":
     
     if funk == "2":
         lang = input("Vilket språk? ")
-        message = f"Using my experiences: {PDFreader(curriculum)} write three jobs I can do, in {lang} as three words, not a list(Maritime officer is \"fartygsbefäl\" in swedish)"
+        message = f"Using my experiences: {PDFreader(curriculum)} write three jobs I can do, in {lang} as three words, NOT a list! (Maritime officer is \"fartygsbefäl\" in swedish)"
         query1 = LLMhelper2()
         query2 = input("Var vill du jobba? (lämna tomt om N/A): ")
         query = query1+" "+query2
@@ -186,9 +185,13 @@ if __name__ == "__main__":
         print(f"\n\n{remember}")
         
     elif funk == "4":
+        meslink = ""
         lang = input("Vilket språk? ")
         chrs = input("Hur många tecken? ")
-        message = f"Using my experiences: {PDFreader(curriculum)}, write me an introduction in {chrs} charachters, in {lang} omit name to save space"
+        link = scrapey(input("Har du en länk? "))
+        if link:
+            message = f"Using my experiences: {PDFreader(curriculum)}, write me an introduction to {link} in {chrs} charachters, in {lang} omit name to save space but include company name if applicable"
+        else : message = f"Using my experiences: {PDFreader(curriculum)}, write me an introduction in {chrs} charachters, in {lang} omit name to save space"
         with open(f"{chrs}ch-{name}.txt", "w") as filli:
             filli.write(LLMhelper2())
         print(f"\n\n{remember}")
@@ -218,11 +221,14 @@ if __name__ == "__main__":
     
     elif funk == "8":
         ScURL = input("Skriv in hemsidan (Gärna en \"Om-Oss\" eller liknande): ")
-        message = f"Using my experiences: {PDFreader(curriculum)}, In a couple of sentences, Am I a good fit for this company: {scrapey(ScURL)}? Yes or No (in Swedish)"
+        message = f"Using my experiences: {PDFreader(curriculum)}, In one sentences, Am I a good fit for this company: {scrapey(ScURL)}? Yes or No (in Swedish)"
         
-        print(f"\n{LLMhelper2()}")    
+        print(f"\n{LLMhelper2()}")   
+        
+    elif funk == "9":
+        
+        print(scrapey(input("Testa scrapey?(länkskrap): ")) )
         
     else:
         print("Välj ett nummer i listan")
         
-                
