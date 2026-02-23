@@ -101,19 +101,19 @@ import numpy as np
 
 #4.5:VIDEO FACE DETECTION (cam)
 
-#cap = cv2.VideoCapture(0)
-#cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-#while True:
-#    _, frame = cap.read()
-#    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-#    faces = cascade.detectMultiScale(gray, 1.1, 4)
-#    for (x, y, w, h) in faces:
-#        cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-#    cv2.imshow("RT Face Detection", frame)
-#    if cv2.waitKey(1) & 0xFF == ord('q'):
-#        break
-#cap.release()
-#cv2.destroyAllWindows()
+cap = cv2.VideoCapture(0)
+cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
+while True:
+    _, frame = cap.read()
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    faces = cascade.detectMultiScale(gray, 1.1, 4)
+    for (x, y, w, h) in faces:
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
+    cv2.imshow("RT Face Detection", frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+cap.release()
+cv2.destroyAllWindows()
 
 #4.6:VIDEO FACE DETECTION (video) (very unstable if alot of movement)
 
@@ -236,16 +236,16 @@ import numpy as np
 
 #5.1: MOTION ANALYSIS (basically optical motion detection)
 
-#cap = cv2.VideoCapture("Res/torg.mp4")
+#cap = cv2.VideoCapture(0)
 #ret, frame = cap.read()
 #fgbg = cv2.createBackgroundSubtractorMOG2()
 #fgmask = fgbg.apply(frame)
-#ret, frame1 = cap.read()
+#et, frame1 = cap.read()
 #prvs = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
 #mask = np.zeros_like(frame1)
 #lk_params = dict(winSize = (15, 15),
 #                 maxLevel = 4,
-#                 criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.03))
+#                 criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 10, 0.05))
 #while True:
 #    ret, frame2 = cap.read()
 #    if not ret:
@@ -265,8 +265,8 @@ import numpy as np
 #    scale_percent = 75
 #    new_width = int(width * scale_percent / 100)
 #    new_height = int(height * scale_percent /100)
-#   dim = (new_width, new_height)
-#   resized = cv2.resize(bgr, dim, interpolation=cv2.INTER_AREA)
+#    dim = (new_width, new_height)
+#    resized = cv2.resize(bgr, dim, interpolation=cv2.INTER_AREA)
 #    cv2.imshow("Optical Flow", resized)
 #    if cv2.waitKey(1) & 0xFF == ord('q'):
 #        break
@@ -277,36 +277,36 @@ import numpy as np
 
 #5.2:FEATURE TRACKING ( need tweaking)
 
-cap = cv2.VideoCapture("Res/torg.mp4")
-ret, frame = cap.read()
-fgbg = cv2.createBackgroundSubtractorMOG2()
-fgmask = fgbg.apply(frame)
-gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-prev_gray = gray.copy()
-prevPts = cv2.goodFeaturesToTrack(prev_gray, maxCorners=200, qualityLevel=0.01, minDistance=30)
-mask = np.zeros_like(frame)
+#cap = cv2.VideoCapture("Res/walking.mp4")
+#ret, frame = cap.read()
+#fgbg = cv2.createBackgroundSubtractorMOG2()
+#fgmask = fgbg.apply(frame)
+#ray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+#prev_gray = gray.copy()
+#prevPts = cv2.goodFeaturesToTrack(prev_gray, maxCorners=200, qualityLevel=0.01, minDistance=30)
+#mask = np.zeros_like(frame)
 
-while True:
-    ret, frame = cap.read()
-    if not ret:
-        break
-    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    nextPts, status, err = cv2.calcOpticalFlowPyrLK(prev_gray, gray, prevPts, None)
-    goodNew = nextPts[status == 1]
-    goodOld = prevPts[status == 1]
-    H, _ = cv2.findHomography(goodOld, goodNew, cv2.RANSAC, 3.0)
-    h, w = frame.shape[:2]
-    pts = np.float32([[0, 0], [0, h - 1], [w - 1, h - 1], [w - 1, 0]]).reshape(-1, 1, 2)
-    dst = cv2.perspectiveTransform(pts, H)
-    img = cv2.polylines(frame, [np.int32(dst)], True, (0, 255, 0), 3, cv2.LINE_AA)
-    cv2.imshow("Feature tracking", img)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
-    prev_gray = gray.copy()
-    prevPts = goodNew.reshape(-1, 1, 2)
+#while True:
+#    ret, frame = cap.read()
+#    if not ret:
+#        break
+#    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+#    nextPts, status, err = cv2.calcOpticalFlowPyrLK(prev_gray, gray, prevPts, None)
+#    goodNew = nextPts[status == 1]
+#    goodOld = prevPts[status == 1]
+#    H, _ = cv2.findHomography(goodOld, goodNew, cv2.RANSAC, 3.0)
+#    h, w = frame.shape[:2]
+#    pts = np.float32([[0, 0], [0, h - 1], [w - 1, h - 1], [w - 1, 0]]).reshape(-1, 1, 2)
+#    dst = cv2.perspectiveTransform(pts, H)
+#    img = cv2.polylines(frame, [np.int32(dst)], True, (0, 255, 0), 3, cv2.LINE_AA)
+#    cv2.imshow("Feature tracking", img)
+#    if cv2.waitKey(1) & 0xFF == ord('q'):
+#        break
+#    prev_gray = gray.copy()
+#    prevPts = goodNew.reshape(-1, 1, 2)
 
 
 
 
 #LEAVE WAITKEY UNCOMMENTED
-cv2.waitKey(0)
+#cv2.waitKey(0)
