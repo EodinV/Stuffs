@@ -18,6 +18,7 @@ Shared Stuffs:
             <li>Panda3d: Playing around with panda3d</li>
             <li>YtPy.py: Discord bot that uses DuckDuckGo APIs to respond with Imagelinks, Videolinks, Newslinks, and Searchlinks, aswell as some LLM query responses.</li>
             <li>Jobbsök: Automated Jobsearch utilizing OpenAI and swedish Arbetsförmedlingen API to structure coverletters and make specified CVs for the ad.. text only</li>
+            <li>RandYT.py: Generates random youtube videocode and tests against oembed API, if hit opens webbrowser(basically useless.. approx 1:7378697629 chance of success)</li>
       </ul>
       <li>CoCPP Folder: Contains some "this might work"-projects. </li>
       <ul>
